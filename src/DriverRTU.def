@@ -1,0 +1,15 @@
+LIBRARY "DriverRTU.dll"
+
+EXPORTS
+	InitService=InitService
+	DeInitService=DeInitService
+	CreateUser=CreateUser
+	ChangePhoneNumber=ChangePhoneNumber
+	UpdateUserIdentity=UpdateUserIdentity
+	UpdateUserPolicy=UpdateUserPolicy
+	DeleteUser=DeleteUser
+	CreateUserTerminal=CreateUserTerminal
+	GetUserTerminalGUId=GetUserTerminalGUId
+	UpdateUserTerminal=UpdateUserTerminal
+	DeleteUserTerminal=DeleteUserTerminal
+	GetUserInfo=GetUserInfo
