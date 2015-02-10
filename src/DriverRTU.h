@@ -69,6 +69,7 @@ int __stdcall UpdateUserIdentity (void **p_ppvParameters, int p_iParamQuantity, 
  *			user id
  *			group list
  *			attr list
+ *			package list (начина€ с версии 1.9)
  *	¬озвращаемое значение:
  *	0 - успешно
  */

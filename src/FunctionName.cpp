@@ -42,17 +42,23 @@ SCommandRule g_msoCommandRule[] = {
 			{-2,"commands\0command\0item\0isRedialable","","true"},
 			{-2,"commands\0command\0item\0behindgateway","","false"},
 			{-2,"commands\0command\0item\0display_name_passing_method","","Transparent"},
-			//{-2,"commands\0command\0item\0type_of_number","","\"\""},
-			//{-2,"commands\0command\0item\0numbering_plan","","\"\""},
 			{-2,"commands\0command\0item\0block_anonymous_calls","","false"},
 			{-2,"commands\0command\0item\0enable_record","","false"},
-#if SIP_RTU_API_VERSION >= 18120
+#if SIP_RTU_API_VERSION >= 19000
+			{ 3,"commands\0command\0item\0subscriber"},				// копируем id
+			{ 4,"commands\0command\0item\0web_login"},
+			{ 5,"commands\0command\0item\0web_password"},
+			{ 4,"commands\0command\0item\0user"},
+#elif SIP_RTU_API_VERSION >= 18120
 			{ 5,"commands\0command\0item\0web_password"},
 			{-2,"commands\0command\0item\0in_capacity", "", "2"},
 			{-2,"commands\0command\0item\0out_capacity", "", "2"},
 			{-2,"commands\0command\0item\0total_capacity", "", "2"},
 /*			{-2,"commands\0command\0item\0max_rtu_terminals", "", "1"},	   CORE-1358 */
 			{-2,"commands\0command\0item\0max_rtu_terminals", "", "0"}, /* CORE-1358 */
+			{ 3,"commands\0command\0item\0name"},				// копируем id
+			{ 4,"commands\0command\0item\0user"},
+			{ 5,"commands\0command\0item\0password"},
 #else
 			{-2,"commands\0command\0item\0display_name_passing_method","","3"}, /* новая версия ругается на значение "3" */
 			{-2,"commands\0command\0item\0cpc","","736"}, /* новая версия ругается на значение "736" */
@@ -84,9 +90,6 @@ SCommandRule g_msoCommandRule[] = {
 #endif
 #endif
 			{ 3,"commands\0command\0item\0id"},
-			{ 3,"commands\0command\0item\0name"},				// копируем id
-			{ 4,"commands\0command\0item\0user"},
-			{ 5,"commands\0command\0item\0password"},
 			{ 6,"commands\0command\0item\0sorm_translation"},
 			/* CORE-1359 *************************************************************************/
 			{ -2,"commands\0command\0item\0user_terminals\0user_terminal\0terminal_id", "", "0"},
@@ -190,9 +193,15 @@ SCommandRule g_msoCommandRule[] = {
 #endif
 			{ 3,"commands\0command\0item\0id"},
 			{ 4,"commands\0command\0item\0new_id"},
+#if SIP_RTU_API_VERSION >= 19000
+			{ 4,"commands\0command\0item\0subscriber"},
+#elif SIP_RTU_API_VERSION >= 18120
 			{ 4,"commands\0command\0item\0name"},
-			{ 5,"commands\0command\0item\0sorm_translation"},
 			{ 6,"commands\0command\0item\0web_password"},
+#else
+			{ 4,"commands\0command\0item\0name"},
+#endif
+			{ 5,"commands\0command\0item\0sorm_translation"},
 			{ 7,"commands\0command\0item\0jid"}
 		},
 		{
@@ -237,10 +246,19 @@ SCommandRule g_msoCommandRule[] = {
 			{-1,"commands\0command","version\0\"1.8\""},
 #endif
 			{ 3,"commands\0command\0item\0id"},
+#if SIP_RTU_API_VERSION >= 19000
+			{ 4,"commands\0command\0item\0web_login"},
+			{ 5,"commands\0command\0item\0web_password"}
+#elif SIP_RTU_API_VERSION >= 18120
+			{ 5,"commands\0command\0item\0web_password"}
 			{ 4,"commands\0command\0item\0user"},
 			{ 5,"commands\0command\0item\0password"},
-			{ 4,"commands\0command\0item\0name"},
-			{ 5,"commands\0command\0item\0web_password"}
+			{ 4,"commands\0command\0item\0name"}
+#else
+			{ 4,"commands\0command\0item\0user"},
+			{ 5,"commands\0command\0item\0password"},
+			{ 4,"commands\0command\0item\0name"}
+#endif
 		},
 		{
 			"Root\0command\0item",

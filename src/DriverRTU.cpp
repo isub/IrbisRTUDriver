@@ -290,19 +290,18 @@ int __stdcall UpdateUserIdentity (void **p_ppvParameters, int p_iParamQuantity, 
 int __stdcall UpdateUserPolicy (void **p_ppvParameters, int p_iParamQuantity, char *p_pszResult)
 {
 	int iRetVal = 0;
-	char *pszGrList, *pszAttrList;
+	char *pszGrList = NULL, *pszAttrList = NULL, *pszPackageList = NULL;
 	char *pszName, *pszNext, *pszValue;
 
 	do {
-		if (5 < p_iParamQuantity) {
-			pszGrList = _strdup (((const char*)*p_ppvParameters) + 256 * 5);
-		} else {
-			pszGrList = NULL;
-		}
-		if (6 < p_iParamQuantity) {
+		switch (p_iParamQuantity) {
+		case 8:
+			pszPackageList = _strdup (((const char*)*p_ppvParameters) + 256 * 7);
+		case 7:
 			pszAttrList = _strdup (((const char*)*p_ppvParameters) + 256 * 6);
-		} else {
-			pszAttrList = NULL;
+		case 6:
+			pszGrList = _strdup (((const char*)*p_ppvParameters) + 256 * 5);
+			break;
 		}
 
 		std::list<SXMLNode*> listNodeList;
@@ -351,6 +350,10 @@ int __stdcall UpdateUserPolicy (void **p_ppvParameters, int p_iParamQuantity, ch
 		}
 		/* обрабатываем атрибуты учетной записи абонента */
 		psoXMLNode = GetNode (&listNodeList, "commands\0command\0item");
+		if (NULL == psoXMLNode) {
+			iRetVal = -2;
+			break;
+		}
 		pszName = pszAttrList;
 		while (pszName) {
 			pszNext = strstr (pszName, ";");
@@ -372,6 +375,29 @@ int __stdcall UpdateUserPolicy (void **p_ppvParameters, int p_iParamQuantity, ch
 				psoXMLNode->SetChild (psoSubValue);
 			}
 			pszName = pszNext;
+		}
+		/* обрабатываем пакеты учетной записи абонента */
+		psoXMLNode = GetNode (&listNodeList, "commands\0command\0item\0packages");
+		if (NULL == psoXMLNode) {
+			iRetVal = -3;
+			break;
+		}
+		pszValue = pszPackageList;
+		while (pszValue) {
+			pszNext = strstr (pszValue, ";");
+			if (pszNext) {
+				*pszNext = '\0';
+				++pszNext;
+			}
+			if (strlen (pszValue)) {
+				/* создаем ноду package */
+				psoSubValue = new SXMLNode;
+				psoSubValue->m_strName = "package";
+				psoSubValue->SetValue (pszValue, strlen (pszValue));
+				/* привязываем ноду package к ноде packages */
+				psoXMLNode->SetChild (psoSubValue);
+			}
+			pszValue = pszNext;
 		}
 		iRetVal = MakeDocument (&listNodeList, strsOutXML);
 		if (iRetVal) { break; }
