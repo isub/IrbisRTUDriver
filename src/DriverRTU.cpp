@@ -34,8 +34,8 @@ int __stdcall InitService (char *p_pszInitParameters, char *p_pszResult)
 		if (NULL == p_pszInitParameters) {
 			break;
 		}
-		/* ðàçáîð ñòðîêè èíèöèàëèçàöèè */
-		/* êîïèðóåì ñòðîêó ïàðàìåòðîâ, ò.ê. â ïðîöåññå îáðàáîòêè äàííûå áóäóò èçìåíÿòüñÿ */
+		/* Ñ€Ð°Ð·Ð±Ð¾Ñ€ ÑÑ‚Ñ€Ð¾ÐºÐ¸ Ð¸Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ð¸ */
+		/* ÐºÐ¾Ð¿Ð¸Ñ€ÑƒÐµÐ¼ ÑÑ‚Ñ€Ð¾ÐºÑƒ Ð¿Ð°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ð¾Ð², Ñ‚.Ðº. Ð² Ð¿Ñ€Ð¾Ñ†ÐµÑÑÐµ Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚ÐºÐ¸ Ð´Ð°Ð½Ð½Ñ‹Ðµ Ð±ÑƒÐ´ÑƒÑ‚ Ð¸Ð·Ð¼ÐµÐ½ÑÑ‚ÑŒÑÑ */
 		iFnRes = strncpy_s (mcDup, p_pszInitParameters, _TRUNCATE);
 		if (iFnRes) {
 			iRetVal = errno;
@@ -314,7 +314,7 @@ int __stdcall UpdateUserPolicy (void **p_ppvParameters, int p_iParamQuantity, ch
 		if (iRetVal) { break; }
 		SXMLNode *psoXMLNode;
 		SXMLNode *psoSubNode, *psoSubValue;
-		/* îáðàáàòûâàåì ãðóïïû ó÷åòíîé çàïèñè àáîíåíòà */
+		/* Ð¾Ð±Ñ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°ÐµÐ¼ Ð³Ñ€ÑƒÐ¿Ð¿Ñ‹ ÑƒÑ‡ÐµÑ‚Ð½Ð¾Ð¹ Ð·Ð°Ð¿Ð¸ÑÐ¸ Ð°Ð±Ð¾Ð½ÐµÐ½Ñ‚Ð° */
 		psoXMLNode = GetNode (&listNodeList, "commands\0command\0item\0groups");
 		if (NULL == psoXMLNode) {
 			iRetVal = -1;
@@ -328,27 +328,27 @@ int __stdcall UpdateUserPolicy (void **p_ppvParameters, int p_iParamQuantity, ch
 				++pszNext;
 			}
 			if (strlen (pszValue)) {
-				/* ñîçäàåì íîäó group */
+				/* ÑÐ¾Ð·Ð´Ð°ÐµÐ¼ Ð½Ð¾Ð´Ñƒ group */
 				psoSubNode = new SXMLNode;
 				psoSubNode->m_strName = "group";
-				/* ñîçäàåì íîäó name */
+				/* ÑÐ¾Ð·Ð´Ð°ÐµÐ¼ Ð½Ð¾Ð´Ñƒ name */
 				psoSubValue = new SXMLNode;
 				psoSubValue->m_strName = "name";
 				psoSubValue->SetValue (pszValue, strlen (pszValue));
-				/* ïðèâÿçûâàåì íîäó name ê íîäå group */
+				/* Ð¿Ñ€Ð¸Ð²ÑÐ·Ñ‹Ð²Ð°ÐµÐ¼ Ð½Ð¾Ð´Ñƒ name Ðº Ð½Ð¾Ð´Ðµ group */
 				psoSubNode->SetChild (psoSubValue);
-				/* ñîçäàåì íîäó enabled */
+				/* ÑÐ¾Ð·Ð´Ð°ÐµÐ¼ Ð½Ð¾Ð´Ñƒ enabled */
 				psoSubValue = new SXMLNode;
 				psoSubValue->m_strName = "enabled";
 				psoSubValue->SetValue ("true", 4);
-				/* ïðèâÿçûâàåì íîäó enabled ê íîäå group */
+				/* Ð¿Ñ€Ð¸Ð²ÑÐ·Ñ‹Ð²Ð°ÐµÐ¼ Ð½Ð¾Ð´Ñƒ enabled Ðº Ð½Ð¾Ð´Ðµ group */
 				psoSubNode->SetChild (psoSubValue);
-				/* ïðèâÿçûâàåì íîäó group ê íîäå groups */
+				/* Ð¿Ñ€Ð¸Ð²ÑÐ·Ñ‹Ð²Ð°ÐµÐ¼ Ð½Ð¾Ð´Ñƒ group Ðº Ð½Ð¾Ð´Ðµ groups */
 				psoXMLNode->SetChild (psoSubNode);
 			}
 			pszValue = pszNext;
 		}
-		/* îáðàáàòûâàåì àòðèáóòû ó÷åòíîé çàïèñè àáîíåíòà */
+		/* Ð¾Ð±Ñ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°ÐµÐ¼ Ð°Ñ‚Ñ€Ð¸Ð±ÑƒÑ‚Ñ‹ ÑƒÑ‡ÐµÑ‚Ð½Ð¾Ð¹ Ð·Ð°Ð¿Ð¸ÑÐ¸ Ð°Ð±Ð¾Ð½ÐµÐ½Ñ‚Ð° */
 		psoXMLNode = GetNode (&listNodeList, "commands\0command\0item");
 		if (NULL == psoXMLNode) {
 			iRetVal = -2;
@@ -367,16 +367,16 @@ int __stdcall UpdateUserPolicy (void **p_ppvParameters, int p_iParamQuantity, ch
 				++pszValue;
 			}
 			if (strlen (pszName)) {
-				/* ñîçäàåì äî÷åðíþþ íîäó */
+				/* ÑÐ¾Ð·Ð´Ð°ÐµÐ¼ Ð´Ð¾Ñ‡ÐµÑ€Ð½ÑŽÑŽ Ð½Ð¾Ð´Ñƒ */
 				psoSubValue = new SXMLNode;
 				psoSubValue->m_strName = pszName;
 				psoSubValue->SetValue (pszValue, strlen (pszValue));
-				/* ïðèâÿçûâàåì äî÷åðíþþ íîäó ê íîäå item */
+				/* Ð¿Ñ€Ð¸Ð²ÑÐ·Ñ‹Ð²Ð°ÐµÐ¼ Ð´Ð¾Ñ‡ÐµÑ€Ð½ÑŽÑŽ Ð½Ð¾Ð´Ñƒ Ðº Ð½Ð¾Ð´Ðµ item */
 				psoXMLNode->SetChild (psoSubValue);
 			}
 			pszName = pszNext;
 		}
-		/* îáðàáàòûâàåì ïàêåòû ó÷åòíîé çàïèñè àáîíåíòà */
+		/* Ð¾Ð±Ñ€Ð°Ð±Ð°Ñ‚Ñ‹Ð²Ð°ÐµÐ¼ Ð¿Ð°ÐºÐµÑ‚Ñ‹ ÑƒÑ‡ÐµÑ‚Ð½Ð¾Ð¹ Ð·Ð°Ð¿Ð¸ÑÐ¸ Ð°Ð±Ð¾Ð½ÐµÐ½Ñ‚Ð° */
 		psoXMLNode = GetNode (&listNodeList, "commands\0command\0item\0packages");
 		if (NULL == psoXMLNode) {
 			iRetVal = -3;
@@ -390,11 +390,11 @@ int __stdcall UpdateUserPolicy (void **p_ppvParameters, int p_iParamQuantity, ch
 				++pszNext;
 			}
 			if (strlen (pszValue)) {
-				/* ñîçäàåì íîäó package */
+				/* ÑÐ¾Ð·Ð´Ð°ÐµÐ¼ Ð½Ð¾Ð´Ñƒ package */
 				psoSubValue = new SXMLNode;
 				psoSubValue->m_strName = "package";
 				psoSubValue->SetValue (pszValue, strlen (pszValue));
-				/* ïðèâÿçûâàåì íîäó package ê íîäå packages */
+				/* Ð¿Ñ€Ð¸Ð²ÑÐ·Ñ‹Ð²Ð°ÐµÐ¼ Ð½Ð¾Ð´Ñƒ package Ðº Ð½Ð¾Ð´Ðµ packages */
 				psoXMLNode->SetChild (psoSubValue);
 			}
 			pszValue = pszNext;

@@ -3,23 +3,23 @@
 
 #define SIP_RTU_API_VERSION 19000
 
-/*	Инициализация статических параметров
- *	Принимаемые параметры:
+/*	РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЃС‚Р°С‚РёС‡РµСЃРєРёС… РїР°СЂР°РјРµС‚СЂРѕРІ
+ *	РџСЂРёРЅРёРјР°РµРјС‹Рµ РїР°СЂР°РјРµС‚СЂС‹:
  *	log_file_mask
  *	rtu_url
  *	debug
- *	параметры разделены символом ';'
+ *	РїР°СЂР°РјРµС‚СЂС‹ СЂР°Р·РґРµР»РµРЅС‹ СЃРёРјРІРѕР»РѕРј ';'
  */
 int __stdcall InitService (char *p_pszInitParameters, char *p_pszResult);
 
-/*	Функция освобождает ресурсы,
- *	занятые драйвером
+/*	Р¤СѓРЅРєС†РёСЏ РѕСЃРІРѕР±РѕР¶РґР°РµС‚ СЂРµСЃСѓСЂСЃС‹,
+ *	Р·Р°РЅСЏС‚С‹Рµ РґСЂР°Р№РІРµСЂРѕРј
  */
 int __stdcall DeInitService (char *p_pszResult);
 
-/*	Функция CreateUser создает абонента на сервисной платформе
- *	Параметры:
- *		обязательные
+/*	Р¤СѓРЅРєС†РёСЏ CreateUser СЃРѕР·РґР°РµС‚ Р°Р±РѕРЅРµРЅС‚Р° РЅР° СЃРµСЂРІРёСЃРЅРѕР№ РїР»Р°С‚С„РѕСЂРјРµ
+ *	РџР°СЂР°РјРµС‚СЂС‹:
+ *		РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ
  *			admin login
  *			admin password
  *			user domain
@@ -27,70 +27,70 @@ int __stdcall DeInitService (char *p_pszResult);
  *			user login
  *			user password
  *			sorm translation
- *	Возвращаемое значение:
- *	0 - успешно
+ *	Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ:
+ *	0 - СѓСЃРїРµС€РЅРѕ
  */
 int __stdcall CreateUser (void **p_ppvParameters, int p_iParamQuantity, char *p_pszResult);
 
-/*	Функция ChangePhoneNumber создает абонента на сервисной платформе
- *	Параметры:
- *		обязательные
+/*	Р¤СѓРЅРєС†РёСЏ ChangePhoneNumber СЃРѕР·РґР°РµС‚ Р°Р±РѕРЅРµРЅС‚Р° РЅР° СЃРµСЂРІРёСЃРЅРѕР№ РїР»Р°С‚С„РѕСЂРјРµ
+ *	РџР°СЂР°РјРµС‚СЂС‹:
+ *		РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ
  *			admin login
  *			admin password
  *			user domain
  *			user id
  *			user new id
  *			sorm translation
- *	Возвращаемое значение:
- *	0 - успешно
+ *	Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ:
+ *	0 - СѓСЃРїРµС€РЅРѕ
  */
 int __stdcall ChangePhoneNumber (void **p_ppvParameters, int p_iParamQuantity, char *p_pszResult);
 
-/*	Функция UpdateUserIdentity обновляет логин/пароль учетной записи
- *	Параметры:
- *		обязательные
+/*	Р¤СѓРЅРєС†РёСЏ UpdateUserIdentity РѕР±РЅРѕРІР»СЏРµС‚ Р»РѕРіРёРЅ/РїР°СЂРѕР»СЊ СѓС‡РµС‚РЅРѕР№ Р·Р°РїРёСЃРё
+ *	РџР°СЂР°РјРµС‚СЂС‹:
+ *		РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ
  *			admin login
  *			admin password
  *			admin domain
  *			user id
  *			user login
  *			user password
- *	Возвращаемое значение:
- *	0 - успешно
+ *	Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ:
+ *	0 - СѓСЃРїРµС€РЅРѕ
  */
 int __stdcall UpdateUserIdentity (void **p_ppvParameters, int p_iParamQuantity, char *p_pszResult);
 
-/*	Функция UpdateUserPolicy создает абонента на сервисной платформе
- *	Параметры:
- *		обязательные
+/*	Р¤СѓРЅРєС†РёСЏ UpdateUserPolicy СЃРѕР·РґР°РµС‚ Р°Р±РѕРЅРµРЅС‚Р° РЅР° СЃРµСЂРІРёСЃРЅРѕР№ РїР»Р°С‚С„РѕСЂРјРµ
+ *	РџР°СЂР°РјРµС‚СЂС‹:
+ *		РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ
  *			admin login
  *			admin password
  *			admin domain
  *			user id
  *			group list
  *			attr list
- *			package list (начиная с версии 1.9)
- *	Возвращаемое значение:
- *	0 - успешно
+ *			package list (РЅР°С‡РёРЅР°СЏ СЃ РІРµСЂСЃРёРё 1.9)
+ *	Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ:
+ *	0 - СѓСЃРїРµС€РЅРѕ
  */
 int __stdcall UpdateUserPolicy (void **p_ppvParameters, int p_iParamQuantity, char *p_pszResult);
 
-/*	Функция DeleteUser создает абонента на сервисной платформе
- *	Параметры:
- *		обязательные
+/*	Р¤СѓРЅРєС†РёСЏ DeleteUser СЃРѕР·РґР°РµС‚ Р°Р±РѕРЅРµРЅС‚Р° РЅР° СЃРµСЂРІРёСЃРЅРѕР№ РїР»Р°С‚С„РѕСЂРјРµ
+ *	РџР°СЂР°РјРµС‚СЂС‹:
+ *		РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ
  *			admin login
  *			admin password
  *			user domain
  *			user id
- *	Возвращаемое значение:
- *	0 - успешно
+ *	Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ:
+ *	0 - СѓСЃРїРµС€РЅРѕ
  */
 int __stdcall DeleteUser (void **p_ppvParameters, int p_iParamQuantity, char *p_pszResult);
 
 #if SIP_RTU_API_VERSION >= 18120
-/*	Функция CreateUserTerminal создает абонента на сервисной платформе
- *	Параметры:
- *		обязательные
+/*	Р¤СѓРЅРєС†РёСЏ CreateUserTerminal СЃРѕР·РґР°РµС‚ Р°Р±РѕРЅРµРЅС‚Р° РЅР° СЃРµСЂРІРёСЃРЅРѕР№ РїР»Р°С‚С„РѕСЂРјРµ
+ *	РџР°СЂР°РјРµС‚СЂС‹:
+ *		РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ
  *			admin login
  *			admin password
  *			user domain
@@ -98,13 +98,13 @@ int __stdcall DeleteUser (void **p_ppvParameters, int p_iParamQuantity, char *p_
  *			user terminal id
  *			terminal login
  *			terminal password
- *	Возвращаемое значение:
- *	0 - успешно
+ *	Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ:
+ *	0 - СѓСЃРїРµС€РЅРѕ
  */
 #else
-/*	Функция CreateUserTerminal создает абонента на сервисной платформе
- *	Параметры:
- *		обязательные
+/*	Р¤СѓРЅРєС†РёСЏ CreateUserTerminal СЃРѕР·РґР°РµС‚ Р°Р±РѕРЅРµРЅС‚Р° РЅР° СЃРµСЂРІРёСЃРЅРѕР№ РїР»Р°С‚С„РѕСЂРјРµ
+ *	РџР°СЂР°РјРµС‚СЂС‹:
+ *		РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ
  *			admin login
  *			admin password
  *			user domain
@@ -115,32 +115,32 @@ int __stdcall DeleteUser (void **p_ppvParameters, int p_iParamQuantity, char *p_
  *			terminal type : Static | Registerable
  *			registration adress port
  *			registration date
- *	Возвращаемое значение:
- *	0 - успешно
+ *	Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ:
+ *	0 - СѓСЃРїРµС€РЅРѕ
  */
 #endif
 int __stdcall CreateUserTerminal (void **p_ppvParameters, int p_iParamQuantity, char *p_pszResult);
 
 #if SIP_RTU_API_VERSION >= 18120
 #else
-/*	Функция GetUserTerminalGUId
- *	Параметры:
- *		обязательные
+/*	Р¤СѓРЅРєС†РёСЏ GetUserTerminalGUId
+ *	РџР°СЂР°РјРµС‚СЂС‹:
+ *		РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ
  *			admin login
  *			admin password
  *			admin domain
  *			abon id
  *			terminal id
- *	Возвращаемое значение:
- *	0 - успешно
+ *	Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ:
+ *	0 - СѓСЃРїРµС€РЅРѕ
  */
 #endif
 int __stdcall GetUserTerminalGUId (void **p_ppvParameters, int p_iParamQuantity, char *p_pszResult);
 
 #if SIP_RTU_API_VERSION >= 18120
-/*	Функция UpdateUserTerminal
- *	Параметры:
- *		обязательные
+/*	Р¤СѓРЅРєС†РёСЏ UpdateUserTerminal
+ *	РџР°СЂР°РјРµС‚СЂС‹:
+ *		РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ
  *			admin login
  *			admin password
  *			admin domain
@@ -148,49 +148,49 @@ int __stdcall GetUserTerminalGUId (void **p_ppvParameters, int p_iParamQuantity,
  *			terminal id
  *			terminal login
  *			terminal password
- *	Возвращаемое значение:
- *	0 - успешно
+ *	Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ:
+ *	0 - СѓСЃРїРµС€РЅРѕ
  */
 #else
-/*	Функция UpdateUserTerminal
- *	Параметры:
- *		обязательные
+/*	Р¤СѓРЅРєС†РёСЏ UpdateUserTerminal
+ *	РџР°СЂР°РјРµС‚СЂС‹:
+ *		РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ
  *			admin login
  *			admin password
  *			admin domain
  *			terminal GUId
  *			terminal login
  *			terminal password
- *	Возвращаемое значение:
- *	0 - успешно
+ *	Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ:
+ *	0 - СѓСЃРїРµС€РЅРѕ
  */
 #endif
 int __stdcall UpdateUserTerminal (void **p_ppvParameters, int p_iParamQuantity, char *p_pszResult);
 
 #if SIP_RTU_API_VERSION >= 18120
 #else
-/*	Функция DeleteUserTerminal
- *	Параметры:
- *		обязательные
+/*	Р¤СѓРЅРєС†РёСЏ DeleteUserTerminal
+ *	РџР°СЂР°РјРµС‚СЂС‹:
+ *		РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ
  *			admin login
  *			admin password
  *			admin domain
  *			terminal GUId
- *	Возвращаемое значение:
- *	0 - успешно
+ *	Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ:
+ *	0 - СѓСЃРїРµС€РЅРѕ
  */
 #endif
 int __stdcall DeleteUserTerminal (void **p_ppvParameters, int p_iParamQuantity, char *p_pszResult);
 
-/*	Функция GetUserInfo
- *	Параметры:
- *		обязательные
+/*	Р¤СѓРЅРєС†РёСЏ GetUserInfo
+ *	РџР°СЂР°РјРµС‚СЂС‹:
+ *		РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ
  *			admin login
  *			admin password
  *			admin domain
  *			abon id
- *	Возвращаемое значение:
- *	0 - успешно
+ *	Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ:
+ *	0 - СѓСЃРїРµС€РЅРѕ
  */
 int __stdcall GetUserInfo (void **p_ppvParameters, int p_iParamQuantity, char *p_pszResult);
 

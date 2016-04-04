@@ -12,13 +12,13 @@ extern int g_iDebug;
 
 int InitialyzeCurl (CURL *pCurl, std::stringstream *p_pstrsIn, SReadData *p_psoOutData);
 
-/* запись полученных данных */
+/* Р·Р°РїРёСЃСЊ РїРѕР»СѓС‡РµРЅРЅС‹С… РґР°РЅРЅС‹С… */
 static size_t my_fwrite (void *buffer, size_t size, size_t nmemb, void *stream) {
 	((std::stringstream*)stream)->write ((char*)buffer, size * nmemb);
 	return size * nmemb;
 }
 
-/* чтение передаваемых данных */
+/* С‡С‚РµРЅРёРµ РїРµСЂРµРґР°РІР°РµРјС‹С… РґР°РЅРЅС‹С… */
 static size_t my_fread (void *buffer, size_t size, size_t nmemb, void *stream) {
 	SReadData *psoReadData = (SReadData*)stream;
 	size_t stDataSize;
@@ -155,7 +155,7 @@ bool CheckNodeAttr (SXMLNode *p_psoXMLNode, const char *p_pcszAttrList) {
 		pszAttrValue = pszAttrName + strlen (pszAttrName);
 		++pszAttrValue;
 		iterAttrList = p_psoXMLNode->m_mapAttrList.find (pszAttrName);
-		/* если атрибут найден */
+		/* РµСЃР»Рё Р°С‚СЂРёР±СѓС‚ РЅР°Р№РґРµРЅ */
 		if (iterAttrList != p_psoXMLNode->m_mapAttrList.end()) {
 			if (0 != iterAttrList->second.compare (pszAttrValue)) {
 				bRetVal = false;
@@ -330,7 +330,7 @@ int GetRespData (const char *p_pcszCommandName, SXMLDoc *p_psoXMLDoc, void **p_p
 
 	do {
 		psoCommandRule = GetCommandDescription (p_pcszCommandName);
-		/* если правило для команды не найдено */
+		/* РµСЃР»Рё РїСЂР°РІРёР»Рѕ РґР»СЏ РєРѕРјР°РЅРґС‹ РЅРµ РЅР°Р№РґРµРЅРѕ */
 		if (NULL == psoCommandRule) {
 			iRetVal = -1;
 			if (g_pcoLog) {
@@ -339,31 +339,31 @@ int GetRespData (const char *p_pcszCommandName, SXMLDoc *p_psoXMLDoc, void **p_p
 			break;
 		}
 
-		/* обработка результата выполнения команды */
+		/* РѕР±СЂР°Р±РѕС‚РєР° СЂРµР·СѓР»СЊС‚Р°С‚Р° РІС‹РїРѕР»РЅРµРЅРёСЏ РєРѕРјР°РЅРґС‹ */
 		psoResult = &(psoCommandRule->m_soResult);
 		iRetVal = GetResult (psoResult, p_psoXMLDoc, p_ppvParameters, p_iParamQuantity, p_pszValue, p_iBufSize, p_ppsoXMLNode);
-		/* если правило успешного завершения сработало */
+		/* РµСЃР»Рё РїСЂР°РІРёР»Рѕ СѓСЃРїРµС€РЅРѕРіРѕ Р·Р°РІРµСЂС€РµРЅРёСЏ СЃСЂР°Р±РѕС‚Р°Р»Рѕ */
 		if (0 == iRetVal) { break; }
 
-		/* обработка ошибки*/
+		/* РѕР±СЂР°Р±РѕС‚РєР° РѕС€РёР±РєРё*/
 		psoResult = &(psoCommandRule->m_soError);
 		iRetVal = GetResult (psoResult, p_psoXMLDoc, p_ppvParameters, p_iParamQuantity, p_pszValue, p_iBufSize);
-		/* если правило ошибочного завершения сработало */
+		/* РµСЃР»Рё РїСЂР°РІРёР»Рѕ РѕС€РёР±РѕС‡РЅРѕРіРѕ Р·Р°РІРµСЂС€РµРЅРёСЏ СЃСЂР°Р±РѕС‚Р°Р»Рѕ */
 		if (0 == iRetVal) {
 			iRetVal = -1;
 			break;
 		}
 
-		/* обработка критической ошибки */
+		/* РѕР±СЂР°Р±РѕС‚РєР° РєСЂРёС‚РёС‡РµСЃРєРѕР№ РѕС€РёР±РєРё */
 		psoResult = &(psoCommandRule->m_soFail);
 		iRetVal = GetResult (psoResult, p_psoXMLDoc, p_ppvParameters, p_iParamQuantity, p_pszValue, p_iBufSize);
-		/* если правило критической ошибки сработало */
+		/* РµСЃР»Рё РїСЂР°РІРёР»Рѕ РєСЂРёС‚РёС‡РµСЃРєРѕР№ РѕС€РёР±РєРё СЃСЂР°Р±РѕС‚Р°Р»Рѕ */
 		if (0 == iRetVal) {
 			iRetVal = -2;
 			break;
 		}
 
-		/* получили неожиданный результат */
+		/* РїРѕР»СѓС‡РёР»Рё РЅРµРѕР¶РёРґР°РЅРЅС‹Р№ СЂРµР·СѓР»СЊС‚Р°С‚ */
 		iRetVal = -1;
 		strncpy_s (p_pszValue, p_iBufSize, "Expected value is not found", p_iBufSize);
 	} while (0);
@@ -382,14 +382,14 @@ int GetResult (SResult *p_psoResult, SXMLDoc *p_psoXMLDoc, void **p_ppvParameter
 	std::map<std::string,std::string>::iterator iterAttrList;
 
 	do {
-		/* если правило задано */
+		/* РµСЃР»Рё РїСЂР°РІРёР»Рѕ Р·Р°РґР°РЅРѕ */
 		if (*(p_psoResult->m_mcBaseNodePath)) {
 			psoBaseXMLNode = GetNode (&(p_psoXMLDoc->m_listRootNodeList), p_psoResult->m_mcBaseNodePath, NULL, false);
-			/* базовый нод результата найден */
+			/* Р±Р°Р·РѕРІС‹Р№ РЅРѕРґ СЂРµР·СѓР»СЊС‚Р°С‚Р° РЅР°Р№РґРµРЅ */
 			if (psoBaseXMLNode) {
-				/* выбираем нужную ноду */
+				/* РІС‹Р±РёСЂР°РµРј РЅСѓР¶РЅСѓСЋ РЅРѕРґСѓ */
 				psoCommandParam = &(p_psoResult->m_soCriteria);
-				/* если критерий выбора задан */
+				/* РµСЃР»Рё РєСЂРёС‚РµСЂРёР№ РІС‹Р±РѕСЂР° Р·Р°РґР°РЅ */
 				if (*(psoCommandParam->m_mcNodePath)) {
 					pcszAttrList = psoCommandParam->m_mcAttrList;
 					if (0 > psoCommandParam->m_iParamNumber) {
@@ -398,37 +398,37 @@ int GetResult (SResult *p_psoResult, SXMLDoc *p_psoXMLDoc, void **p_ppvParameter
 						pcszValue = reinterpret_cast<const char*>(*p_ppvParameters) + 256 * psoCommandParam->m_iParamNumber;
 					}
 					psoXMLNode = CheckNode (&(psoBaseXMLNode->m_listChildList), psoCommandParam, pcszValue, pcszAttrList);
-					/* если необходимое значение не найдено */
+					/* РµСЃР»Рё РЅРµРѕР±С…РѕРґРёРјРѕРµ Р·РЅР°С‡РµРЅРёРµ РЅРµ РЅР°Р№РґРµРЅРѕ */
 					if (NULL == psoXMLNode) {
 						iRetVal = -1;
 						break;
 					}
 				} else {
-					/* если дочерняя нода не задана */
+					/* РµСЃР»Рё РґРѕС‡РµСЂРЅСЏСЏ РЅРѕРґР° РЅРµ Р·Р°РґР°РЅР° */
 					psoXMLNode = psoBaseXMLNode;
 				}
-				/* если вызывающую функцию интересует искомая нода */
+				/* РµСЃР»Рё РІС‹Р·С‹РІР°СЋС‰СѓСЋ С„СѓРЅРєС†РёСЋ РёРЅС‚РµСЂРµСЃСѓРµС‚ РёСЃРєРѕРјР°СЏ РЅРѕРґР° */
 				if (p_ppsoXMLNode) {
 					*p_ppsoXMLNode = psoXMLNode;
 				}
-				/* выбираем нужное значение */
+				/* РІС‹Р±РёСЂР°РµРј РЅСѓР¶РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ */
 				psoCommandParam = &(p_psoResult->m_soSelect);
-				/* проверяем, нужна ли выборка значений */
-				/* в случае выборки можно выбирать лишь атрибуты (-1) или значение узла (-2) */
-				/* выбирать значение входного параметра (>= 0) бессмысленно */
+				/* РїСЂРѕРІРµСЂСЏРµРј, РЅСѓР¶РЅР° Р»Рё РІС‹Р±РѕСЂРєР° Р·РЅР°С‡РµРЅРёР№ */
+				/* РІ СЃР»СѓС‡Р°Рµ РІС‹Р±РѕСЂРєРё РјРѕР¶РЅРѕ РІС‹Р±РёСЂР°С‚СЊ Р»РёС€СЊ Р°С‚СЂРёР±СѓС‚С‹ (-1) РёР»Рё Р·РЅР°С‡РµРЅРёРµ СѓР·Р»Р° (-2) */
+				/* РІС‹Р±РёСЂР°С‚СЊ Р·РЅР°С‡РµРЅРёРµ РІС…РѕРґРЅРѕРіРѕ РїР°СЂР°РјРµС‚СЂР° (>= 0) Р±РµСЃСЃРјС‹СЃР»РµРЅРЅРѕ */
 				if (0 == psoCommandParam->m_iParamNumber) {
 					break;
 				}
-				/* если задано выбираемое значение */
+				/* РµСЃР»Рё Р·Р°РґР°РЅРѕ РІС‹Р±РёСЂР°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ */
 				if (*(psoCommandParam->m_mcNodePath)) {
 					psoXMLNode = GetNode (&(psoXMLNode->m_listChildList), psoCommandParam->m_mcNodePath, NULL, false);
-				/* если искомая нода не найдена */
+				/* РµСЃР»Рё РёСЃРєРѕРјР°СЏ РЅРѕРґР° РЅРµ РЅР°Р№РґРµРЅР° */
 					if (NULL == psoXMLNode) {
 						iRetVal = -1;
 						break;
 					}
 				}
-				/* собираем список атрибутов */
+				/* СЃРѕР±РёСЂР°РµРј СЃРїРёСЃРѕРє Р°С‚СЂРёР±СѓС‚РѕРІ */
 				if (-1 == psoCommandParam->m_iParamNumber
 					|| -3 == psoCommandParam->m_iParamNumber) {
 					for (iterAttrList = psoXMLNode->m_mapAttrList.begin(); iterAttrList != psoXMLNode->m_mapAttrList.end(); ++iterAttrList) {
@@ -460,7 +460,7 @@ int GetResult (SResult *p_psoResult, SXMLDoc *p_psoXMLDoc, void **p_ppvParameter
 						strncpy_s (p_pszValue, p_iBufSize, strResult.c_str(), p_iBufSize);
 						break;
 					default:
-						/* недопустимое значение в данном контексте */
+						/* РЅРµРґРѕРїСѓСЃС‚РёРјРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РґР°РЅРЅРѕРј РєРѕРЅС‚РµРєСЃС‚Рµ */
 						iRetVal = -1;
 						break;
 					}
@@ -469,7 +469,7 @@ int GetResult (SResult *p_psoResult, SXMLDoc *p_psoXMLDoc, void **p_ppvParameter
 					break;
 				}
 			} else {
-				/* если базовый нод не найден */
+				/* РµСЃР»Рё Р±Р°Р·РѕРІС‹Р№ РЅРѕРґ РЅРµ РЅР°Р№РґРµРЅ */
 				iRetVal = -1;
 				break;
 			}
@@ -489,24 +489,24 @@ SXMLNode * GetNode (std::list<SXMLNode*> *p_plistNodeList, const char *p_pszNode
 	plistNodeList = p_plistNodeList;
 	pszNodeName = p_pszNodePath;
 	for (iterNodeList = plistNodeList->begin(); iterNodeList != plistNodeList->end(); ++iterNodeList) {
-		/* если найдена нужная нода */
+		/* РµСЃР»Рё РЅР°Р№РґРµРЅР° РЅСѓР¶РЅР°СЏ РЅРѕРґР° */
 		if ((*iterNodeList)->m_strName == pszNodeName) {
 			pszSubNodeName = pszNodeName + strlen (pszNodeName);
 			++pszSubNodeName;
 			if (*pszSubNodeName) {
-				/* если обход не завершен */
+				/* РµСЃР»Рё РѕР±С…РѕРґ РЅРµ Р·Р°РІРµСЂС€РµРЅ */
 				psoXMLNode = GetNode (&((*iterNodeList)->m_listChildList), pszSubNodeName, *iterNodeList, p_bCreateNodes);
 				break;
 			} else {
-				/* завершаем обход */
+				/* Р·Р°РІРµСЂС€Р°РµРј РѕР±С…РѕРґ */
 				psoXMLNode = *iterNodeList;
 				break;
 			}
 		}
 	}
-	/* если при обходе всех нод нужная не найдена */
+	/* РµСЃР»Рё РїСЂРё РѕР±С…РѕРґРµ РІСЃРµС… РЅРѕРґ РЅСѓР¶РЅР°СЏ РЅРµ РЅР°Р№РґРµРЅР° */
 	if (iterNodeList == plistNodeList->end()) {
-		/* если необходимо создавать недостающие ноды */
+		/* РµСЃР»Рё РЅРµРѕР±С…РѕРґРёРјРѕ СЃРѕР·РґР°РІР°С‚СЊ РЅРµРґРѕСЃС‚Р°СЋС‰РёРµ РЅРѕРґС‹ */
 		if (p_bCreateNodes) {
 			psoXMLNode = new SXMLNode;
 			if (p_psoParentNode) {
@@ -541,12 +541,12 @@ SXMLNode * CheckNode (std::list<SXMLNode*> *p_plistNodeList, SCommandParam *p_ps
 	plistNodeList = p_plistNodeList;
 	pcszNodeName = p_psoCmdParam->m_mcNodePath;
 	for (iterNodeList = plistNodeList->begin(); iterNodeList != plistNodeList->end(); ++iterNodeList) {
-		/* если найдена нужная нода */
+		/* РµСЃР»Рё РЅР°Р№РґРµРЅР° РЅСѓР¶РЅР°СЏ РЅРѕРґР° */
 		if ((*iterNodeList)->m_strName == pcszNodeName) {
 			pcszSubNodeName = pcszNodeName + strlen (pcszNodeName);
 			++pcszSubNodeName;
 			if (*pcszSubNodeName) {
-				/* если обход не завершен */
+				/* РµСЃР»Рё РѕР±С…РѕРґ РЅРµ Р·Р°РІРµСЂС€РµРЅ */
 				psoXMLNode = GetNode (&((*iterNodeList)->m_listChildList), pcszSubNodeName, NULL, false);
 				if (NULL == psoXMLNode) { break; }
 				switch (p_psoCmdParam->m_iParamNumber) {
@@ -596,7 +596,7 @@ SCommandRule * GetCommandDescription (const char *p_pcszCommandName) {
 	SCommandRule *psoRetValue;
 	int iCmdInd;
 	std::string strCommandName;
-	/* ищем описание операции */
+	/* РёС‰РµРј РѕРїРёСЃР°РЅРёРµ РѕРїРµСЂР°С†РёРё */
 	strCommandName = p_pcszCommandName;
 	for (iCmdInd = 0; iCmdInd < g_stCmdRuleSize/sizeof(*g_msoCommandRule); ++iCmdInd) {
 		psoRetValue = &(g_msoCommandRule[iCmdInd]);

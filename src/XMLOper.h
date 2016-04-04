@@ -16,11 +16,11 @@ public:
 public:
 	void SetChild (SXMLNode *p_psoChild);
 	void SetValue (const char *p_pszValue, int p_iValueLen);
-	/* возвращает размер значения */
+	/* РІРѕР·РІСЂР°С‰Р°РµС‚ СЂР°Р·РјРµСЂ Р·РЅР°С‡РµРЅРёСЏ */
 	int GetValue (std::string &p_strValue);
 	int GetXMLValue (std::string &p_strValue);
 private:
-	/* замещает p_pszB на p_pszA */
+	/* Р·Р°РјРµС‰Р°РµС‚ p_pszB РЅР° p_pszA */
 	void ReplEscapeSeq (std::string &p_strValue, char *p_pszA, char *p_pszB);
 	void SetEscapeSeq (std::string &p_strValue);
 private:

@@ -45,7 +45,7 @@ SCommandRule g_msoCommandRule[] = {
 			{-2,"commands\0command\0item\0block_anonymous_calls","","false"},
 			{-2,"commands\0command\0item\0enable_record","","false"},
 #if SIP_RTU_API_VERSION >= 19000
-			{ 3,"commands\0command\0item\0subscriber"},				// копируем id
+			{ 3,"commands\0command\0item\0subscriber"},				// РєРѕРїРёСЂСѓРµРј id
 			{ 4,"commands\0command\0item\0web_login"},
 			{ 5,"commands\0command\0item\0web_password"},
 			{ 4,"commands\0command\0item\0user"},
@@ -56,37 +56,37 @@ SCommandRule g_msoCommandRule[] = {
 			{-2,"commands\0command\0item\0total_capacity", "", "2"},
 /*			{-2,"commands\0command\0item\0max_rtu_terminals", "", "1"},	   CORE-1358 */
 			{-2,"commands\0command\0item\0max_rtu_terminals", "", "0"}, /* CORE-1358 */
-			{ 3,"commands\0command\0item\0name"},				// копируем id
+			{ 3,"commands\0command\0item\0name"},				// РєРѕРїРёСЂСѓРµРј id
 			{ 4,"commands\0command\0item\0user"},
 			{ 5,"commands\0command\0item\0password"},
 #else
-			{-2,"commands\0command\0item\0display_name_passing_method","","3"}, /* новая версия ругается на значение "3" */
-			{-2,"commands\0command\0item\0cpc","","736"}, /* новая версия ругается на значение "736" */
-			{-2,"commands\0command\0item\0options\0capacity_in", "", "2"}, /* отсутствует в API 1.8.1-20*/
-			{-2,"commands\0command\0item\0options\0capacity_out", "", "2"}, /* отсутствует в API 1.8.1-20*/
-			{-2,"commands\0command\0item\0options\0capacity_all", "", "2"}, /* отсутствует в API 1.8.1-20*/
-			{-2,"commands\0command\0item\0audio_codec_group","","PCM+729"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0video_codec_group","","All_video"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0options\0NatMode", "", "detect"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0options\0t38", "", "true"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0options\0early_connect", "", "false"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0options\0proxy_rbt", "", "true"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0options\0Alerting", "", "media"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0options\0AllowSipRedirect", "", "false"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0options\0dtmfOutChoice", "", "rfc2833"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0options\0dtmfInRFC2833_h323", "", "any"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0options\0dtmfInRFC2833", "", "any"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0options\0Tunneling", "", "true"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0options\0FastStart", "", "true"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0options\0StartH245", "", "callproceeding"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0options\0codec_passing_policy", "", "ChangeGeneralCapability"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0options\0proxy_media_policy", "", "Proxy"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0options\0g711_as_fax", "", "false"}, /* исключить в версии 18120 */
-			{-2,"commands\0command\0item\0options\0rtp_timeout", "", "180"}, /* является свойством профиля терминала в API 1.8.1-20*/
+			{-2,"commands\0command\0item\0display_name_passing_method","","3"}, /* РЅРѕРІР°СЏ РІРµСЂСЃРёСЏ СЂСѓРіР°РµС‚СЃСЏ РЅР° Р·РЅР°С‡РµРЅРёРµ "3" */
+			{-2,"commands\0command\0item\0cpc","","736"}, /* РЅРѕРІР°СЏ РІРµСЂСЃРёСЏ СЂСѓРіР°РµС‚СЃСЏ РЅР° Р·РЅР°С‡РµРЅРёРµ "736" */
+			{-2,"commands\0command\0item\0options\0capacity_in", "", "2"}, /* РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РІ API 1.8.1-20*/
+			{-2,"commands\0command\0item\0options\0capacity_out", "", "2"}, /* РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РІ API 1.8.1-20*/
+			{-2,"commands\0command\0item\0options\0capacity_all", "", "2"}, /* РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РІ API 1.8.1-20*/
+			{-2,"commands\0command\0item\0audio_codec_group","","PCM+729"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0video_codec_group","","All_video"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0options\0NatMode", "", "detect"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0options\0t38", "", "true"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0options\0early_connect", "", "false"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0options\0proxy_rbt", "", "true"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0options\0Alerting", "", "media"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0options\0AllowSipRedirect", "", "false"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0options\0dtmfOutChoice", "", "rfc2833"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0options\0dtmfInRFC2833_h323", "", "any"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0options\0dtmfInRFC2833", "", "any"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0options\0Tunneling", "", "true"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0options\0FastStart", "", "true"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0options\0StartH245", "", "callproceeding"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0options\0codec_passing_policy", "", "ChangeGeneralCapability"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0options\0proxy_media_policy", "", "Proxy"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0options\0g711_as_fax", "", "false"}, /* РёСЃРєР»СЋС‡РёС‚СЊ РІ РІРµСЂСЃРёРё 18120 */
+			{-2,"commands\0command\0item\0options\0rtp_timeout", "", "180"}, /* СЏРІР»СЏРµС‚СЃСЏ СЃРІРѕР№СЃС‚РІРѕРј РїСЂРѕС„РёР»СЏ С‚РµСЂРјРёРЅР°Р»Р° РІ API 1.8.1-20*/
 #ifdef _DEBUG
-			{-2,"commands\0command\0item\0options\0zone", "", "voip"}, /* является свойством терминала в API 1.8.1-20*/
+			{-2,"commands\0command\0item\0options\0zone", "", "voip"}, /* СЏРІР»СЏРµС‚СЃСЏ СЃРІРѕР№СЃС‚РІРѕРј С‚РµСЂРјРёРЅР°Р»Р° РІ API 1.8.1-20*/
 #else
-			{-2,"commands\0command\0item\0options\0zone", "", "vip-ext"}, /* является свойством терминала в API 1.8.1-20*/
+			{-2,"commands\0command\0item\0options\0zone", "", "vip-ext"}, /* СЏРІР»СЏРµС‚СЃСЏ СЃРІРѕР№СЃС‚РІРѕРј С‚РµСЂРјРёРЅР°Р»Р° РІ API 1.8.1-20*/
 #endif
 #endif
 			{ 3,"commands\0command\0item\0id"},

@@ -7,10 +7,10 @@
 
 struct SCommandParam {
 	/*	m_iParamNumber:
-			-1 - использовать m_mcAttrList;
-			-2 - использовать m_mcValue;
-			-3 - использовать m_mcAttrList и m_mcValue
-			>= 0 - использовать как индекс массива входных параметров (void **p_ppvParameters)
+			-1 - РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ m_mcAttrList;
+			-2 - РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ m_mcValue;
+			-3 - РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ m_mcAttrList Рё m_mcValue
+			>= 0 - РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РєР°Рє РёРЅРґРµРєСЃ РјР°СЃСЃРёРІР° РІС…РѕРґРЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ (void **p_ppvParameters)
 	*/
 	int m_iParamNumber;
 	char m_mcNodePath[1024];
