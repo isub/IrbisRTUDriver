@@ -1,6 +1,6 @@
 #include "DriverRTU.h"
 #include "AuxiliaryFunction.h"
-#include <curl.h>
+#include <curl/curl.h>
 #include "Utils/Log/Log.h"
 #include "DataOper.h"
 

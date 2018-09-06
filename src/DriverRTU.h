@@ -3,6 +3,10 @@
 
 #define SIP_RTU_API_VERSION 19000
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*	Инициализация статических параметров
  *	Принимаемые параметры:
  *	log_file_mask
@@ -193,5 +197,9 @@ int __stdcall DeleteUserTerminal (void **p_ppvParameters, int p_iParamQuantity, 
  *	0 - успешно
  */
 int __stdcall GetUserInfo (void **p_ppvParameters, int p_iParamQuantity, char *p_pszResult);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
